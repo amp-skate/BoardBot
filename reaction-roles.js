@@ -12,6 +12,11 @@ function removeEmojis(string) {
 function isOnlyEmoji(string) {
     return !removeEmojis(string);
 }
+
+function fetchRole(string) {
+    console.log(string)
+}
+
 const channels = ['815195502131806218']
 const roles = {
     "React Role 1": "815195649493958676",
@@ -30,20 +35,17 @@ module.exports = (bot) => {
         if (!channels.includes(channel.id)) return;
 
         if (msg.member.roles.cache.find((r => r.name === "Support") || (r => r.name === "new role"))) {
+            var whole = content
             const eachLine = content.split('\n');
             for (const line of eachLine) {
                 const split = line.split(' ');
                 const emoji = split[0].trim();
-                if(isOnlyEmoji(emoji)){
-                    try {
-                        msg.react(emoji);
-                    } catch (e) {
-                        console.log('Oops');
-                    }
-                }else{
-                    continue
-                }
+                if(!isOnlyEmoji(emoji)) continue
+                msg.react(emoji)
             }
+        }
+        if (whole.includes('<@&')){
+            
         }
     })
 }
