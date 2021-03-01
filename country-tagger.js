@@ -2,7 +2,9 @@ const {
     moderator_roles,
     flag_drop
 } = require('./config.json')
-import { Country, countries } from "./flag-emojis"
+const {
+    name, emoji
+} = require('./country-roles.json')
 
 function getCountry(FlagEmoji) {
     
