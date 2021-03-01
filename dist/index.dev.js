@@ -13,8 +13,6 @@ var polls = require('./polls');
 
 var fs = require('fs');
 
-var testing = require('./testing');
-
 bot.commands = new Discord.Collection();
 var commandFiles = fs.readdirSync('./commands/').filter(function (file) {
   return file.endsWith('.js');
@@ -49,7 +47,6 @@ try {
 bot.on('ready', function () {
   console.log('Board bot is online');
   polls(bot);
-  testing(bot);
 });
 bot.on('message', function (msg) {
   var args = msg.content.slice(prefix.length).split(/ +/);
@@ -59,6 +56,8 @@ bot.on('message', function (msg) {
     bot.commands.get('ping').execute(msg, args);
   } else if (command === "youtube" || command === "yt") {
     bot.commands.get('youtube').execute(msg, args, youtube_link);
+  } else if (command == "test") {
+    bot.commands.get('testing').execute(msg, args);
   }
 });
 bot.login(token);
