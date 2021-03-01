@@ -4,7 +4,7 @@ const {
 } = require('discord.js')
 const reg = /[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/;
 const country = require('../flag-emojis')
-
+var customRole
 const {
     polls_channel
 } = require('../config.json')
@@ -29,13 +29,18 @@ module.exports = {
             return
         }
 
+        
+            customRole = `I'm from ${getCollectionFromEmoji(args)}!`
         try{
-            msg.channel.send(`I'm From ${getCollectionFromEmoji(args)}`)
- 
+            if (!msg.member.roles.cache.find((r => r.name === customRole))){
+                let rol = msg.member.guild.roles.cache.find(r => r.name === customRole)
+                msg.guild.members.cache.get(msg.author.id).roles.add(rol)
+                msg.react('👍')
+            }
+            else msg.channel.send("you already have the country assigned role!")
         }catch(e){
             msg.channel.send('Something seems wrong, maybe your country tag is not available at the moment, please reach out to a moderator or an admin! Sorry for the inconvienience! ')
             console.log(e)
         }
-
     }
 }
