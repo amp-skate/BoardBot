@@ -1,6 +1,5 @@
 const {
     prefix,
-    token,
     youtube_link,
 } = require('./config.json')
 const Discord = require('discord.js')
@@ -8,6 +7,7 @@ const bot = new Discord.Client()
 const polls = require('./polls')
 const fs = require('fs')
 const reactRole = require('./commands/react-role')
+const { env } = require('process')
 bot.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'))
@@ -38,4 +38,4 @@ bot.on('message',msg=>{
         bot.commands.get('reactionrole').execute(msg, args, Discord, client)
     }*/
 })
-bot.login(token)
+bot.login(process.env.NOTHING_SPECIAL)
