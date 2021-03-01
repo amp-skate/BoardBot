@@ -1,10 +1,12 @@
 "use strict";
 
-var _flagEmojis = require("./flag-emojis");
-
 var _require = require('./config.json'),
     moderator_roles = _require.moderator_roles,
     flag_drop = _require.flag_drop;
+
+var _require2 = require('./country-roles.json'),
+    name = _require2.name,
+    emoji = _require2.emoji;
 
 function getCountry(FlagEmoji) {}
 
