@@ -9,6 +9,8 @@
   "author": "Josh Trivedi",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "country-flag-icons": "^1.2.9",
+    "discord.js": "^12.5.1",
+    "emoji-flags": "^1.3.0"
   }
 }
