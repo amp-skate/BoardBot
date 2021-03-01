@@ -9,7 +9,6 @@ const {
     polls_channel
 } = require('../config.json')
 
-//var emojis = require('../flag-emojis')
 function getCollectionFromEmoji(args) {
     const matching =
             country.find(element => element.emoji == args)
@@ -32,7 +31,7 @@ module.exports = {
 
         try{
             msg.channel.send(`I'm From ${getCollectionFromEmoji(args)}`)
-            //getCollectionFromEmoji(args)
+ 
         }catch(e){
             msg.channel.send('Something seems wrong, maybe your country tag is not available at the moment, please reach out to a moderator or an admin! Sorry for the inconvienience! ')
             console.log(e)
