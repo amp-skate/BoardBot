@@ -14,6 +14,9 @@ function removeEmojis(string) {
   return string.replace(regex, "");
 }
 
+function isEmojiServer(msg, string) {//TODO update for server emojis
+}
+
 function isOnlyEmoji(string) {
   return !removeEmojis(string);
 }
