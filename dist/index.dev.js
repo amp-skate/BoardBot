@@ -2,8 +2,8 @@
 
 var _require = require('./config.json'),
     prefix = _require.prefix,
-    token = _require.token,
-    youtube_link = _require.youtube_link;
+    youtube_link = _require.youtube_link,
+    NOTHING_SPECIAL = _require.NOTHING_SPECIAL;
 
 var Discord = require('discord.js');
 
@@ -11,7 +11,9 @@ var bot = new Discord.Client();
 
 var polls = require('./polls');
 
-var fs = require('fs');
+var fs = require('fs'); //const reactRole = require('./commands/react-role')
+//const { env } = require('process')
+
 
 bot.commands = new Discord.Collection();
 var commandFiles = fs.readdirSync('./commands/').filter(function (file) {
@@ -56,8 +58,14 @@ bot.on('message', function (msg) {
     bot.commands.get('ping').execute(msg, args);
   } else if (command === "youtube" || command === "yt") {
     bot.commands.get('youtube').execute(msg, args, youtube_link);
-  } else if (command == "test") {
+  } else if (command == "flag") {
     bot.commands.get('testing').execute(msg, args);
+  } else if (command === "getinitialreaction") {
+    bot.commands.get('createrolereaction').execute(bot, msg, args);
   }
+  /*else if(command == "reactionrole"){
+      bot.commands.get('reactionrole').execute(msg, args, Discord, client)
+  }*/
+
 });
-bot.login(token);
+bot.login(NOTHING_SPECIAL);
