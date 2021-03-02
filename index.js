@@ -2,7 +2,6 @@ const {
     prefix,
     youtube_link,
     moderator_roles,
-    NOTHING_SPECIAL,
     flag_drop
 } = require('./config.json')
 const Discord = require('discord.js')
@@ -55,4 +54,4 @@ bot.on('message',msg=>{
         bot.commands.get('reactionrole').execute(msg, args, Discord, client)
     }*/
 })
-bot.login(NOTHING_SPECIAL)
+bot.login(process.env.NOTHING_SPECIAL)
