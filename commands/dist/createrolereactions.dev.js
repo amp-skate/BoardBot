@@ -20,52 +20,16 @@ function isOnlyEmoji(string) {
   return !removeEmojis(string);
 }
 
+var MessageModel = require('../database/message');
+
 var msgCollectorFilter = function msgCollectorFilter(newMsg, originalMsg) {
-  var cache = originalMsg.guild.emojis.cache;
-  if (newMsg.author.id !== originalMsg.author.id) return false;
-
-  var _originalMsg$content$ = originalMsg.content.split(/,\s+/),
-      _originalMsg$content$2 = _slicedToArray(_originalMsg$content$, 2),
-      emojiName = _originalMsg$content$2[0],
-      roleName = _originalMsg$content$2[1];
-
-  if (!emojiName && !roleName) return false; //TODO : Update for server emojis 
-
-  var emoji = emojiName;
-
-  if (!isOnlyEmoji(emoji)) {
-    originalMsg.channel.send("Emoji does not exist, Try again").then(function (msg) {
-      return msg["delete"]({
-        timeout: 2000
-      });
-    })["catch"](function (err) {
-      return console.log(err);
-    });
-    return false;
-  }
-
-  var role = originalMsg.guild.roles.cache.find(function (role) {
-    return role.name.toLowerCase() === roleName.toLowerCase();
-  });
-
-  if (!role) {
-    originalMsg.channel.send("Role does not exist, Try again").then(function (msg) {
-      return msg["delete"]({
-        timeout: 2000
-      });
-    })["catch"](function (err) {
-      return console.log(err);
-    });
-    return false;
-  }
-
-  return true;
+  return newMsg.author.id === originalMsg.author.id;
 };
 
 module.exports = {
   name: "createrolereaction",
   execute: function execute(client, message, args) {
-    var msg, fetchedmessage, collector, _msg;
+    var msg, fetchedMessage, collector, emojiRoleMappings, _msg;
 
     return regeneratorRuntime.async(function execute$(_context) {
       while (1) {
@@ -89,7 +53,7 @@ module.exports = {
             }));
 
           case 6:
-            _context.next = 23;
+            _context.next = 29;
             break;
 
           case 8:
@@ -98,40 +62,101 @@ module.exports = {
             return regeneratorRuntime.awrap(message.channel.messages.fetch(args));
 
           case 11:
-            fetchedmessage = _context.sent;
+            fetchedMessage = _context.sent;
 
-            if (fetchedmessage) {
-              message.channel.send('Please provide all the emojis and rolenames next to each other, for example:\n:pleading_face:, Skateboarding');
-              collector = new MessageCollector(message.channel, msgCollectorFilter.bind(null, message));
-              collector.on('collect', function (msg) {//TODO : React the fetched reaction to the fetched message
-              });
+            if (!fetchedMessage) {
+              _context.next = 19;
+              break;
             }
 
-            _context.next = 23;
-            break;
+            _context.next = 15;
+            return regeneratorRuntime.awrap(message.channel.send("Please provide all the emojis and rolenames next to each other, for example:\n:pleading_face:, Skateboarding"));
 
           case 15:
-            _context.prev = 15;
+            collector = new MessageCollector(message.channel, msgCollectorFilter.bind(null, message));
+            emojiRoleMappings = new Map();
+            collector.on('collect', function (msg) {
+              //TODO : React the fetched reaction to the fetched message
+              var cache = msg.guild.emojis.cache;
+
+              if (msg.content.toLowerCase() === '?done') {
+                collector.stop('the done command was issued');
+                return;
+              }
+
+              var _msg$content$split = msg.content.split(','),
+                  _msg$content$split2 = _slicedToArray(_msg$content$split, 2),
+                  emojiName = _msg$content$split2[0],
+                  roleName = _msg$content$split2[1];
+
+              if (!emojiName && !roleName) return; //TODO check for server emojis too
+
+              var emoji = emojiName.trim();
+
+              if (!isOnlyEmoji(emoji)) {
+                msg.channel.send("Emoji does not exist, Try again").then(function (msg) {
+                  return msg["delete"]({
+                    timeout: 4000
+                  });
+                })["catch"](function (err) {
+                  return console.log(err);
+                });
+                return;
+              }
+
+              var role = msg.guild.roles.cache.find(function (role) {
+                return role.name.toLowerCase() === roleName.toLowerCase().trim();
+              });
+
+              if (!role) {
+                msg.channel.send("Role does not exist, Try again").then(function (msg) {
+                  return msg["delete"]({
+                    timeout: 4000
+                  });
+                })["catch"](function (err) {
+                  return console.log(err);
+                });
+                return;
+              } //TODO : Update for server emojis 
+
+
+              fetchedMessage.react(emoji).then(function (emoji) {
+                return console.log('reacted');
+              })["catch"](function (err) {
+                return console.log(err);
+              });
+              emojiRoleMappings.set(emoji, role.id);
+            });
+            collector.on('end', function (collected, reason) {
+              console.log(emojiRoleMappings);
+            });
+
+          case 19:
+            _context.next = 29;
+            break;
+
+          case 21:
+            _context.prev = 21;
             _context.t0 = _context["catch"](8);
             console.log(_context.t0);
-            _context.next = 20;
+            _context.next = 26;
             return regeneratorRuntime.awrap(message.channel.send("Invalid Id. Message was not found."));
 
-          case 20:
+          case 26:
             _msg = _context.sent;
-            _context.next = 23;
+            _context.next = 29;
             return regeneratorRuntime.awrap(_msg["delete"]({
               timeout: 3500
             })["catch"](function (err) {
               return console.log(err);
             }));
 
-          case 23:
+          case 29:
           case "end":
             return _context.stop();
         }
       }
-    }, null, null, [[8, 15]]);
+    }, null, null, [[8, 21]]);
   },
   aliases: [],
   description: 'Enables a message to listen to reactions to give roles'
