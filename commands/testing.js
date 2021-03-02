@@ -14,8 +14,6 @@ function getCollectionFromEmoji(args) {
             country.find(element => element.emoji == args)
         return (matching.name)
 }
-
-
 module.exports = {
     name: "testing",
     description: "testing code for the dev",
@@ -28,14 +26,13 @@ module.exports = {
             msg.channel.send('Please enter a valid country flag emoji like !flag 🇺🇲 , and enter one flag at a time only!')
             return
         }
-
-        
             customRole = `I'm from ${getCollectionFromEmoji(args)}!`
         try{
             if (!msg.member.roles.cache.find((r => r.name === customRole))){
                 let rol = msg.member.guild.roles.cache.find(r => r.name === customRole)
                 msg.guild.members.cache.get(msg.author.id).roles.add(rol)
-                msg.react('👍')
+                .then(msg.react('👍'))
+                .catch(err=>msg.channel.send("Couldn't find your role, please reach out to an Admin"))
             }
             else msg.channel.send("you already have the country assigned role!")
         }catch(e){
