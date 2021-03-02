@@ -3,7 +3,9 @@
 var _require = require('./config.json'),
     prefix = _require.prefix,
     youtube_link = _require.youtube_link,
-    NOTHING_SPECIAL = _require.NOTHING_SPECIAL;
+    moderator_roles = _require.moderator_roles,
+    NOTHING_SPECIAL = _require.NOTHING_SPECIAL,
+    flag_drop = _require.flag_drop;
 
 var Discord = require('discord.js');
 
@@ -11,7 +13,18 @@ var bot = new Discord.Client();
 
 var polls = require('./polls');
 
-var fs = require('fs'); //const reactRole = require('./commands/react-role')
+var fs = require('fs');
+
+var MessageModel = require('./database/message');
+
+var database = require('./database/database');
+
+var rolereaction = require('./commands/rolereaction');
+
+var _require2 = require('./commands/rolereaction'),
+    run = _require2.run;
+
+var flagDrop = require('./flag-drop'); //const reactRole = require('./commands/react-role')
 //const { env } = require('process')
 
 
@@ -49,6 +62,11 @@ try {
 bot.on('ready', function () {
   console.log('Board bot is online');
   polls(bot);
+  database.then(function () {
+    return console.log('MongoDB is Connected!');
+  })["catch"](function (err) {
+    return console.log(err);
+  });
 });
 bot.on('message', function (msg) {
   var args = msg.content.slice(prefix.length).split(/ +/);
@@ -58,12 +76,18 @@ bot.on('message', function (msg) {
     bot.commands.get('ping').execute(msg, args);
   } else if (command === "youtube" || command === "yt") {
     bot.commands.get('youtube').execute(msg, args, youtube_link);
-  } else if (command == "flag") {
-    bot.commands.get('testing').execute(msg, args);
-  } else if (command === "getinitialreaction") {
-    bot.commands.get('createrolereaction').execute(bot, msg, args);
+  } else if (flag_drop.includes(msg.channel.id)) {
+    flagDrop.execute(bot, msg);
   }
-  /*else if(command == "reactionrole"){
+  /*else if(command == "flag"){
+      bot.commands.get('testing').execute(msg,args)
+  }
+  else if(command === "getreaction"){
+      bot.commands.get('createrolereaction').execute(bot,msg,args)
+  }else if(command === "try"){
+      rolereaction:run(bot,msg,args)
+  }
+  else if(command == "reactionrole"){
       bot.commands.get('reactionrole').execute(msg, args, Discord, client)
   }*/
 
