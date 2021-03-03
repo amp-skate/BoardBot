@@ -2,14 +2,17 @@ const {
     prefix,
     youtube_link,
     moderator_roles,
-    flag_drop
+    NOTHING_SPECIAL,
+    flag_drop,
+    testing_channels,
+    profile_channel
 } = require('./config.json')
 const Discord = require('discord.js')
-const bot = new Discord.Client()
+const bot = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
 const polls = require('./polls')
 const fs = require('fs')
-const MessageModel = require('./database/message');
-const database = require('./database/database');
+//const MessageModel = require('./database/message');
+//const database = require('./database/database');
 const rolereaction = require('./commands/rolereaction')
 const { run } = require('./commands/rolereaction')
 const flagDrop = require('./flag-drop')
@@ -28,7 +31,7 @@ for(const file of commandFiles){
 bot.on('ready', () =>{
     console.log('Board bot is online')
     polls(bot);
-    database.then(()=>console.log('MongoDB is Connected!')).catch(err=>console.log(err))
+    //database.then(()=>console.log('MongoDB is Connected!')).catch(err=>console.log(err))
 })
 
 bot.on('message',msg=>{
@@ -42,16 +45,31 @@ bot.on('message',msg=>{
     else if(flag_drop.includes(msg.channel.id) && !msg.author.bot){
         flagDrop.execute(bot,msg)
     }
-    /*else if(command == "flag"){
-        bot.commands.get('testing').execute(msg,args)
-    }
-    else if(command === "getreaction"){
-        bot.commands.get('createrolereaction').execute(bot,msg,args)
-    }else if(command === "try"){
-        rolereaction:run(bot,msg,args)
-    }
-    else if(command == "reactionrole"){
-        bot.commands.get('reactionrole').execute(msg, args, Discord, client)
-    }*/
 })
-bot.login(process.env.NOTHING_SPECIAL)
+
+bot.on('messageReactionAdd', async (reaction, user)=>{
+    if(reaction.message.partial) await reaction.message.fetch();
+    if(reaction.partial) await reaction.fetch();
+
+    if(user.bot) return;
+    if(!reaction.message.guild) return;
+    //switch(reaction.emoji.name)
+    if(profile_channel.includes(reaction.message.channel.id)){
+        if(reaction.emoji.name === '1️⃣'){
+            console.log('yes first given')
+            let role = reaction.message.guild.roles.cache.find(r=>r.name === "he/him")
+            await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+        }
+        if(reaction.emoji.name === '2️⃣'){
+            console.log('yes second given')
+            let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "she/her")
+            await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+        }
+        if(reaction.emoji.name === '3️⃣'){
+            let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "they/them")
+            await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+        }
+    }
+})
+
+bot.login(NOTHING_SPECIAL)
