@@ -2,10 +2,13 @@
     "prefix" : "!",
     "token" : "",
     "youtube_link" : "https://www.youtube.com/c/BrandonDesJarlais",
-    "polls_channel" : ["815698265794019328","815195502131806218","815325087615156295","815223078589693952"],
-    "reaction_channels" : ["815988275427803166"],
-    "common_role" : ["Support","Member"],
+    "polls_channel" : ["815698265794019328","815325087615156295","816622010158809118","816622007852466201","816622007852466201"],
+    "reaction_channels" : [""],
+    "common_role" : ["Member","ADMIN",""],
     "moderator_roles" : ["ADMIN","Moderator","Support"],
     "announcement_channel" : "",
-    "flag_drop" : ["815220833664237569","815702199149396028","815612385909276693"]
+    "flag_drop" : ["815702199149396028","816622007852466200","815220833664237569",""],
+    "profile_channel" : ["815702316442320926","816622007852466201","815223078589693952"],
+    "arrivals" : [],
+    "testing_channels" : "816622007852466201"
 }
