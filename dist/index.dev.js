@@ -4,7 +4,8 @@ var _require = require('./config.json'),
     prefix = _require.prefix,
     youtube_link = _require.youtube_link,
     moderator_roles = _require.moderator_roles,
-    flag_drop = _require.flag_drop;
+    flag_drop = _require.flag_drop,
+    NOTHING_SPECIAL = _require.NOTHING_SPECIAL;
 
 var Discord = require('discord.js');
 
