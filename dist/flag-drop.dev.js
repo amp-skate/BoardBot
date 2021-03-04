@@ -22,7 +22,7 @@ module.exports = {
   name: "flag-drop",
   description: "testing code for the dev",
   execute: function execute(bot, msg) {
-    var channel, content, args, customRole, rol;
+    var channel, content, args, customRole, rol, memberrole;
     return regeneratorRuntime.async(function execute$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -46,6 +46,12 @@ module.exports = {
                   return r.name === customRole;
                 });
                 msg.guild.members.cache.get(msg.author.id).roles.add(rol).then(msg.react('👍'))["catch"](function (err) {
+                  return console.log(err);
+                });
+                memberrole = msg.member.guild.roles.cache.find(function (r) {
+                  return r.name.tolowercase === "member";
+                });
+                msg.guild.members.cache.get(msg.author.id).roles.add(memberrole).then(msg.react('❤'))["catch"](function (err) {
                   return console.log(err);
                 });
               } else msg.channel.send("you already have the country assigned role!");
