@@ -8,7 +8,6 @@ const country = require('./flag-emojis')
 const {
     polls_channel
 } = require('./config.json');
-const message = require('./database/message');
 
 function getCollectionFromEmoji(args) {
     const matching =
