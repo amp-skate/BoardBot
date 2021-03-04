@@ -4,10 +4,7 @@ var _require = require('./config.json'),
     prefix = _require.prefix,
     youtube_link = _require.youtube_link,
     moderator_roles = _require.moderator_roles,
-    NOTHING_SPECIAL = _require.NOTHING_SPECIAL,
-    flag_drop = _require.flag_drop,
-    testing_channels = _require.testing_channels,
-    profile_channel = _require.profile_channel;
+    flag_drop = _require.flag_drop;
 
 var Discord = require('discord.js');
 
@@ -17,22 +14,13 @@ var bot = new Discord.Client({
 
 var polls = require('./polls');
 
-var fs = require('fs'); //const MessageModel = require('./database/message');
-//const database = require('./database/database');
-
-
-var rolereaction = require('./commands/rolereaction');
-
-var _require2 = require('./commands/rolereaction'),
-    run = _require2.run;
+var fs = require('fs');
 
 var flagDrop = require('./flag-drop');
 
 var reactionAdd = require('./reaction-add');
 
-var reactionRemove = require('./reaction-remove'); //const reactRole = require('./commands/react-role')
-//const { env } = require('process')
-
+var reactionRemove = require('./reaction-remove');
 
 bot.commands = new Discord.Collection();
 var commandFiles = fs.readdirSync('./commands/').filter(function (file) {
@@ -67,8 +55,7 @@ try {
 
 bot.on('ready', function () {
   console.log('Board bot is online');
-  polls(bot); //database.then(()=>console.log('MongoDB is Connected!')).catch(err=>console.log(err))
-
+  polls(bot);
   reactionAdd(bot);
   reactionRemove(bot);
 });
