@@ -32,6 +32,10 @@ module.exports = {
                         msg.guild.members.cache.get(msg.author.id).roles.add(rol)
                         .then(msg.react('👍'))
                         .catch(err=>console.log(err))
+                        let memberrole = msg.member.guild.roles.cache.find(r=>r.name.tolowercase === "member")
+                        msg.guild.members.cache.get(msg.author.id).roles.add(memberrole)
+                        .then(msg.react('❤'))
+                        .catch(err=>console.log(err))
                     } else msg.channel.send("you already have the country assigned role!")
                 } catch (e) {
                     msg.channel.send("couldn't find your assigned country role, Please reach out to an Admin! Sorry for the inconvenience")
