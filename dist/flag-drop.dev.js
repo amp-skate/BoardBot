@@ -66,15 +66,16 @@ module.exports = {
             return _context.abrupt("return");
 
           case 11:
-            _context.next = 16;
+            _context.next = 17;
             break;
 
           case 13:
             _context.prev = 13;
             _context.t0 = _context["catch"](2);
+            msg.channel.send('Please enter only the flag, like this -> 🇺🇲 and, only 1 flag at a time! Dont write anything else in this channel!');
             console.log(_context.t0);
 
-          case 16:
+          case 17:
           case "end":
             return _context.stop();
         }
