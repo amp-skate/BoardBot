@@ -36,7 +36,7 @@ module.exports = {
         let sent2 = await msg.channel.send("**What's your experiece in terms of longboarding?\n:baby: Beginner\n:child: Intermediate\n:person_curly_hair: Advanced\n:older_adult: Professional\n:mage: Wizard**")
         sent2.react('👶')
         sent2.react('🧒')
-        sent2.react(':person_curly_hair:')
+        sent2.react('')
         
     }
 }
