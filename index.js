@@ -3,6 +3,7 @@ const {
     youtube_link,
     moderator_roles,
     flag_drop,
+    NOTHING_SPECIAL
 } = require('./config.json')
 const Discord = require('discord.js')
 const bot = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
