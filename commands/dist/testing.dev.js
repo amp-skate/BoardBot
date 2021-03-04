@@ -50,7 +50,7 @@ module.exports = {
             sent2 = _context.sent;
             sent2.react('👶');
             sent2.react('🧒');
-            sent2.react(':person_curly_hair:');
+            sent2.react('');
 
           case 14:
           case "end":
