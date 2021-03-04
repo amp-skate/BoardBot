@@ -32,7 +32,7 @@ module.exports = {
                         msg.guild.members.cache.get(msg.author.id).roles.add(rol)
                         .then(msg.react('👍'))
                         .catch(err=>console.log(err))
-                        let memberrole = msg.member.guild.roles.cache.find(r=>r.name.tolowercase === "member")
+                        let memberrole = msg.member.guild.roles.cache.find(r=>r.name.toLowerCase() === "member")
                         msg.guild.members.cache.get(msg.author.id).roles.add(memberrole)
                         .then(msg.react('❤'))
                         .catch(err=>console.log(err))

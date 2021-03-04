@@ -49,7 +49,7 @@ module.exports = {
                   return console.log(err);
                 });
                 memberrole = msg.member.guild.roles.cache.find(function (r) {
-                  return r.name.tolowercase === "member";
+                  return r.name.toLowerCase() === "member";
                 });
                 msg.guild.members.cache.get(msg.author.id).roles.add(memberrole).then(msg.react('❤'))["catch"](function (err) {
                   return console.log(err);
