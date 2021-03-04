@@ -44,6 +44,11 @@ module.exports = function (bot) {
           var line = _step.value;
           var split = line.split(' ');
           var emoji = split[0].trim();
+
+          if (emoji === '🅱️' || emoji === '🅰️') {
+            msg.react(emoji);
+          }
+
           if (!isOnlyEmoji(emoji)) continue;
           msg.react(emoji);
         }
