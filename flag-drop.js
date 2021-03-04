@@ -41,6 +41,7 @@ module.exports = {
                 return
             }
         } catch (err) {
+            msg.channel.send('Please enter only the flag, like this -> 🇺🇲 and, only 1 flag at a time! Dont write anything else in this channel!')
             console.log(err)
         }
     }
