@@ -1,3 +1,15 @@
 node_modules
 profile.jpg
 .env
+commands/createrolereactions.js
+commands/react-role.js
+commands/testing.js
+commands/reactionrole.js
+commands/rolereaction.js
+commands/dist/createrolereactions.dev.js
+commands/dist/react-role.dev.js
+commands/dist/testing.dev.js
+commands/dist/reactionrole.dev.js
+commands/dist/rolereaction.dev.js
+database
+first-message
