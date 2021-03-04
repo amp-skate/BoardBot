@@ -84,4 +84,4 @@ bot.on('message', function (msg) {
     flagDrop.execute(bot, msg);
   }
 });
-bot.login(NOTHING_SPECIAL);
+bot.login(process.env.NOTHING_SPECIAL);
