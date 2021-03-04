@@ -51,4 +51,4 @@ bot.on('message',msg=>{
     }
 })
 
-bot.login(NOTHING_SPECIAL)
+bot.login(process.env.NOTHING_SPECIAL)
