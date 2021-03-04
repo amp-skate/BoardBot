@@ -35,8 +35,13 @@ module.exports = (bot) => {
             for (const line of eachLine) {
                 const split = line.split(' ');
                 const emoji = split[0].trim();
+                if((emoji === '🅱️') || (emoji === '🅰️')){
+                    msg.react(emoji)
+                }
+
                 if(!isOnlyEmoji(emoji)) continue
                 msg.react(emoji)
+                
             }
         }
     })
