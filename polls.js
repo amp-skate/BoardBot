@@ -5,7 +5,8 @@ const {
 const {
     flag_drop,
     polls_channel,
-    moderator_roles
+    moderator_roles,
+    common_role
 } = require('./config.json')
 
 function isEmojiServer(msg,string) {
@@ -30,7 +31,7 @@ module.exports = (bot) => {
         if (!polls_channel.includes(channel.id)) {
             return;
         }
-        if (msg.member.roles.cache.find((r) => moderator_roles.includes(r.name))){
+        if (msg.member.roles.cache.find((r) => (moderator_roles.includes(r.name) || (common_role.includes(r.name))))){
             const eachLine = content.split('\n');
             for (const line of eachLine) {
                 const split = line.split(' ');

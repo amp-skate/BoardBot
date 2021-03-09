@@ -7,7 +7,8 @@ var _require = require("discord.js"),
 var _require2 = require('./config.json'),
     flag_drop = _require2.flag_drop,
     polls_channel = _require2.polls_channel,
-    moderator_roles = _require2.moderator_roles;
+    moderator_roles = _require2.moderator_roles,
+    common_role = _require2.common_role;
 
 function isEmojiServer(msg, string) {//TODO update for server emojis
 }
@@ -32,7 +33,7 @@ module.exports = function (bot) {
     }
 
     if (msg.member.roles.cache.find(function (r) {
-      return moderator_roles.includes(r.name);
+      return moderator_roles.includes(r.name) || common_role.includes(r.name);
     })) {
       var eachLine = content.split('\n');
       var _iteratorNormalCompletion = true;
