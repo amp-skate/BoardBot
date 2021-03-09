@@ -2,9 +2,10 @@ const {
     prefix,
     youtube_link,
     moderator_roles,
-    flag_drop,
-    NOTHING_SPECIAL
+    flag_drop
 } = require('./config.json')
+const dotenv = require('dotenv')
+dotenv.config()
 const Discord = require('discord.js')
 const bot = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
 const polls = require('./polls')
