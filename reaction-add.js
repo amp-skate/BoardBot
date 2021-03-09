@@ -43,6 +43,7 @@ module.exports = (bot) => {
                 let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "professional")
                 await reaction.message.guild.members.cache.get(user.id).roles.add(role)
             }
+            
             if(reaction.emoji.name === '🧙'){
                 let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "wizard")
                 await reaction.message.guild.members.cache.get(user.id).roles.add(role)
