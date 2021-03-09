@@ -23,6 +23,7 @@ module.exports = {
             content
         } = msg
         let args = msg.content.toLowerCase().trim()
+        
         try {
             if (reg.test(args)) {
                 let customRole = `I'm from ${getCollectionFromEmoji(args)}!`
