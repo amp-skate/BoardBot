@@ -167,7 +167,35 @@ module.exports = (bot) => {
             if(reaction.emoji.name === '🤡'){
                 let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "i'm here for the memes")
                 await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+            }
+            if(reaction.emoji.name === '🦖'){
+                let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "1950-1959")
+                await reaction.message.guild.members.cache.get(user.id).roles.add(role)
             } 
+            if(reaction.emoji.name === '🐢'){
+                let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "1960-1969")
+                await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+            } 
+            if(reaction.emoji.name === '🦅'){
+                let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "1970-1979")
+                await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+            } 
+            if(reaction.emoji.name === '🦁'){
+                let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "1980-1989")
+                await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+            } 
+            if(reaction.emoji.name === '🐶'){
+                let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "1990-1999")
+                await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+            } 
+            if(reaction.emoji.name === '🐒'){
+                let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "2000-2009")
+                await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+            } 
+            if(reaction.emoji.name === '🪱'){
+                let role = reaction.message.guild.roles.cache.find(r=>r.name.toLowerCase() === "2010-2019")
+                await reaction.message.guild.members.cache.get(user.id).roles.add(role)
+            }  
         }
     })
 }
