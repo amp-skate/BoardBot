@@ -5,7 +5,7 @@ var _require = require('./config.json'),
 
 module.exports = function (bot) {
   bot.on('messageReactionRemove', function _callee(reaction, user) {
-    var role, _role, _role2, _role3, _role4, _role5, _role6, _role7, _role8, _role9, _role10, _role11, _role12, _role13, _role14, _role15, _role16, _role17, _role18, _role19, _role20, _role21, _role22, _role23, _role24, _role25, _role26, _role27, _role28, _role29, _role30, _role31, _role32, _role33, _role34, _role35, _role36, _role37;
+    var role, _role, _role2, _role3, _role4, _role5, _role6, _role7, _role8, _role9, _role10, _role11, _role12, _role13, _role14, _role15, _role16, _role17, _role18, _role19, _role20, _role21, _role22, _role23, _role24, _role25, _role26, _role27, _role28, _role29, _role30, _role31, _role32, _role33, _role34, _role35, _role36, _role37, _role38, _role39, _role40, _role41, _role42, _role43, _role44;
 
     return regeneratorRuntime.async(function _callee$(_context) {
       while (1) {
@@ -46,7 +46,7 @@ module.exports = function (bot) {
 
           case 10:
             if (!profile_channel.includes(reaction.message.channel.id)) {
-              _context.next = 165;
+              _context.next = 193;
               break;
             }
 
@@ -508,6 +508,90 @@ module.exports = function (bot) {
             return regeneratorRuntime.awrap(reaction.message.guild.members.cache.get(user.id).roles.remove(_role37));
 
           case 165:
+            if (!(reaction.emoji.name === '🦖')) {
+              _context.next = 169;
+              break;
+            }
+
+            _role38 = reaction.message.guild.roles.cache.find(function (r) {
+              return r.name.toLowerCase() === "1950-1959";
+            });
+            _context.next = 169;
+            return regeneratorRuntime.awrap(reaction.message.guild.members.cache.get(user.id).roles.remove(_role38));
+
+          case 169:
+            if (!(reaction.emoji.name === '🐢')) {
+              _context.next = 173;
+              break;
+            }
+
+            _role39 = reaction.message.guild.roles.cache.find(function (r) {
+              return r.name.toLowerCase() === "1960-1969";
+            });
+            _context.next = 173;
+            return regeneratorRuntime.awrap(reaction.message.guild.members.cache.get(user.id).roles.remove(_role39));
+
+          case 173:
+            if (!(reaction.emoji.name === '🦅')) {
+              _context.next = 177;
+              break;
+            }
+
+            _role40 = reaction.message.guild.roles.cache.find(function (r) {
+              return r.name.toLowerCase() === "1970-1979";
+            });
+            _context.next = 177;
+            return regeneratorRuntime.awrap(reaction.message.guild.members.cache.get(user.id).roles.remove(_role40));
+
+          case 177:
+            if (!(reaction.emoji.name === '🦁')) {
+              _context.next = 181;
+              break;
+            }
+
+            _role41 = reaction.message.guild.roles.cache.find(function (r) {
+              return r.name.toLowerCase() === "1980-1989";
+            });
+            _context.next = 181;
+            return regeneratorRuntime.awrap(reaction.message.guild.members.cache.get(user.id).roles.remove(_role41));
+
+          case 181:
+            if (!(reaction.emoji.name === '🐶')) {
+              _context.next = 185;
+              break;
+            }
+
+            _role42 = reaction.message.guild.roles.cache.find(function (r) {
+              return r.name.toLowerCase() === "1990-1999";
+            });
+            _context.next = 185;
+            return regeneratorRuntime.awrap(reaction.message.guild.members.cache.get(user.id).roles.remove(_role42));
+
+          case 185:
+            if (!(reaction.emoji.name === '🐒')) {
+              _context.next = 189;
+              break;
+            }
+
+            _role43 = reaction.message.guild.roles.cache.find(function (r) {
+              return r.name.toLowerCase() === "2000-2009";
+            });
+            _context.next = 189;
+            return regeneratorRuntime.awrap(reaction.message.guild.members.cache.get(user.id).roles.remove(_role43));
+
+          case 189:
+            if (!(reaction.emoji.name === '🪱')) {
+              _context.next = 193;
+              break;
+            }
+
+            _role44 = reaction.message.guild.roles.cache.find(function (r) {
+              return r.name.toLowerCase() === "2010-2019";
+            });
+            _context.next = 193;
+            return regeneratorRuntime.awrap(reaction.message.guild.members.cache.get(user.id).roles.remove(_role44));
+
+          case 193:
           case "end":
             return _context.stop();
         }
