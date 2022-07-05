@@ -75,4 +75,4 @@ bot.on('message', function (msg) {
     flagDrop.execute(bot, msg);
   }
 });
-bot.login(process.env.NOTHING_SPECIAL);
+bot.login(process.env.DISCORD_BOT_KEY);
